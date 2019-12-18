@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import Navbar from "./Navbar";
 import Dropmenu from "./Dropmenu";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,8 +26,10 @@ const Header = () => {
         <div className={classes.root}>
           <Grid container={true} alignContent='center'>
             <Grid item xs={9} sm={3} md={6} lg={8} xl={9}>
-              <Typography variant='h4' color='inherit'>
-                Dev Core
+              <Typography variant='h4' color='inherit' className='logoheader'>
+                <Link to='/' className='react-link'>
+                  Dev Core
+                </Link>
               </Typography>
             </Grid>
             <Grid item xs={3} sm={9} md={6} lg={4} xl={3}>

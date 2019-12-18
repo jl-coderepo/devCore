@@ -6,6 +6,13 @@
   font-family: "Roboto", sans-serif;
 }
 
+/* Header styles */
+h4.logoheader {
+  font-weight: 700;
+  font-size: 32px;
+  padding-top: 0.25em;
+}
+
 /* Landing styles */
 .landing {
   position: relative;

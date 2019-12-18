@@ -1,5 +1,6 @@
 import React from "react";
 import { List, ListItem, ListItemText, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const Navbar = props => {
   return (
@@ -13,13 +14,17 @@ const Navbar = props => {
 
         <ListItemText inset>
           <Typography color='inherit' variant='inherit'>
-            Sign In
+            <Link to='signin' className='react-link'>
+              Sign In
+            </Link>
           </Typography>
         </ListItemText>
 
         <ListItemText inset>
           <Typography color='inherit' variant='inherit'>
-            Sign Up
+            <Link to='signup' className='react-link'>
+              Sign Up
+            </Link>
           </Typography>
         </ListItemText>
       </ListItem>
