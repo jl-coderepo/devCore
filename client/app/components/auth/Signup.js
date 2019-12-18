@@ -1,8 +1,11 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { setAlert } from "../../actions/alert";
 import PropTypes from "prop-types";
 
 const Signup = ({ setAlert }) => {
+  //const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,12 +15,12 @@ const Signup = ({ setAlert }) => {
   const { name, email, password, password2 } = formData;
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  const onSubmit = async e => {
+  const onSubmit = e => {
     e.preventDefault();
     if (password !== password2) {
-      console.log("Bad move");
+      setAlert("Passwords do not match", "warning");
     } else {
-      console.log(formData);
+      console.log("SUCCESS");
     }
   };
   return (
@@ -78,4 +81,8 @@ const Signup = ({ setAlert }) => {
   );
 };
 
-export default Signup;
+Signup.propTypes = {
+  setAlert: PropTypes.func.isRequired
+};
+
+export default connect(null, { setAlert })(Signup);
