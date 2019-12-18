@@ -30,7 +30,8 @@ const Header = () => {
               </Typography>
             </Grid>
             <Grid item xs={3} sm={9} md={6} lg={4} xl={3}>
-              {matches ? <Navbar /> : <Dropmenu />}
+              {/* {matches ? <Navbar /> : <Dropmenu />} */}
+              <Navbar />
             </Grid>
           </Grid>
         </div>

@@ -34,3 +34,9 @@
   justify-content: center;
   text-align: center;
 }
+
+/* removing default Link styles */
+.react-link {
+  text-decoration: none;
+  color: inherit;
+}

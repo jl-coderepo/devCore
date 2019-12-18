@@ -14,8 +14,16 @@ const Landing = () => {
           size='large'
           aria-label='large outlined secondary button group'
         >
-          <Button>Sign Up</Button>
-          <Button>Sign In</Button>
+          <Button>
+            <Link to='signup' className='react-link'>
+              Sign Up
+            </Link>
+          </Button>
+          <Button>
+            <Link to='signin' className='react-link'>
+              Sign In
+            </Link>
+          </Button>
         </ButtonGroup>
         <div>
           {/* <Link to='/register'>Sign Up</Link>
