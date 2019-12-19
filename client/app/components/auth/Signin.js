@@ -1,7 +1,10 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { signin } from "../../actions/auth";
 
-const Signin = () => {
+const Signin = ({ signin, isAuth }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -11,8 +14,13 @@ const Signin = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = async e => {
     e.preventDefault();
-    console.log(formData);
+    signin(email, password);
   };
+
+  //Redirect after user validation
+  if (typeof isAuth !== "undefined" && isAuth) {
+    return <Redirect to='/' />;
+  }
 
   return (
     <Fragment>
@@ -51,4 +59,13 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+Signin.propTypes = {
+  signin: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuth: state.auth.isAuth
+});
+
+export default connect(mapStateToProps, { signin })(Signin);

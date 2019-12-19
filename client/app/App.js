@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Landing from "./components/layout/Landing";
@@ -7,8 +7,20 @@ import Signup from "./components/auth/Signup";
 import { Provider } from "react-redux";
 import store from "./store";
 import Alert from "./components/layout/Alert";
+import { loadUser } from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken";
+
+//Not sure if it's best to handle here instead of index.js
+if (localStorage.length > 0 && typeof localStorage.token !== "undefined") {
+  setAuthToken(localStorage.token);
+}
 
 const App = () => {
+  //componentdidmount hook
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>

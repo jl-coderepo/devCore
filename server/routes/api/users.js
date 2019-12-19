@@ -10,7 +10,7 @@ const User = require("../../models/User");
 /**
  * To register a new user if possible.
  *
- * @route   POST api/user
+ * @route   POST api/users
  * @access  Public
  */
 router.post(
