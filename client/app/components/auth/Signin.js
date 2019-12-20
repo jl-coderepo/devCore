@@ -3,17 +3,24 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { signin } from "../../actions/auth";
+import { TextField, Typography, Button } from "@material-ui/core";
+// note: use themeprovider later to handle light/dark mode
 
 const Signin = ({ signin, isAuth }) => {
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
+    length: true
   });
-  const { email, password } = formData;
+  const { email, password, length, noInput } = formData;
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = async e => {
     e.preventDefault();
+    setFormData({
+      ...formData,
+      length: password.length > 5 ? true : false
+    });
     signin(email, password);
   };
 
@@ -24,35 +31,34 @@ const Signin = ({ signin, isAuth }) => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Sign In</h1>
-      <p className='lead'>
-        <i className='fas fa-user'></i> Sign Into Your Account
-      </p>
+      <Typography color='inherit' variant='h4'>
+        Sign In
+      </Typography>
       <form className='form' onSubmit={e => onSubmit(e)}>
-        <div className='form-group'>
-          <input
-            type='email'
-            placeholder='Email Address'
-            name='email'
-            value={email}
-            onChange={e => onChange(e)}
-            required
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='password'
-            placeholder='Password'
-            name='password'
-            value={password}
-            onChange={e => onChange(e)}
-            required
-            minLength='6'
-          />
-        </div>
-        <input type='submit' className='btn btn-primary' value='Login' />
+        <TextField
+          label='Email Address'
+          name='email'
+          value={email}
+          onChange={e => onChange(e)}
+          required
+        />
+        <br />
+        <TextField
+          label='Password'
+          name='password'
+          type='password'
+          value={password}
+          onChange={e => onChange(e)}
+          error={!length}
+          required
+        />
+        <br />
+        <br />
+        <Button type='submit' variant='contained' color='primary'>
+          Submit
+        </Button>
       </form>
-      <p className='my-1'>
+      <p>
         Don't have an account? <Link to='/signup'>Sign Up</Link>
       </p>
     </Fragment>

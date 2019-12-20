@@ -4,16 +4,17 @@ import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
 import { signup } from "../../actions/auth";
 import PropTypes from "prop-types";
+import { TextField, Typography, Button } from "@material-ui/core";
 
 const Signup = ({ setAlert, signup, isAuth }) => {
-  //const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    password2: ""
+    password2: "",
+    length: true
   });
-  const { name, email, password, password2 } = formData;
+  const { name, email, password, password2, length } = formData;
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = e => {
@@ -21,7 +22,10 @@ const Signup = ({ setAlert, signup, isAuth }) => {
     if (password !== password2) {
       setAlert("Passwords do not match", "warning");
     } else {
-      // console.log("SUCCESS");
+      setFormData({
+        ...formData,
+        length: password.length > 5 ? true : false
+      });
       signup({ name, email, password });
     }
   };
@@ -33,56 +37,51 @@ const Signup = ({ setAlert, signup, isAuth }) => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Sign Up</h1>
-      <p className='lead'>
-        <i className='fas fa-user'></i> Create Your Account
-      </p>
+      <Typography color='inherit' variant='h4'>
+        Sign Up
+      </Typography>
       <form className='form' onSubmit={e => onSubmit(e)}>
-        <div className='form-group'>
-          <input
-            type='text'
-            placeholder='Name'
-            name='name'
-            value={name}
-            onChange={e => onChange(e)}
-            required
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='email'
-            placeholder='Email Address'
-            name='email'
-            value={email}
-            onChange={e => onChange(e)}
-            required
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='password'
-            placeholder='Password'
-            name='password'
-            value={password}
-            onChange={e => onChange(e)}
-            required
-            minLength='6'
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='password'
-            placeholder='Confirm Password'
-            name='password2'
-            value={password2}
-            onChange={e => onChange(e)}
-            required
-            minLength='6'
-          />
-        </div>
-        <input type='submit' className='btn btn-primary' value='Register' />
+        <TextField
+          label='Name'
+          name='name'
+          value={name}
+          onChange={e => onChange(e)}
+          required
+        />
+        <br />
+        <TextField
+          label='Email Address'
+          name='email'
+          value={email}
+          onChange={e => onChange(e)}
+          required
+        />
+        <br />
+        <TextField
+          label='Password'
+          name='password'
+          type='password'
+          value={password}
+          onChange={e => onChange(e)}
+          error={!length}
+          required
+        />
+        <br />
+        <TextField
+          label='Confirm Password'
+          name='password2'
+          type='password'
+          value={password2}
+          onChange={e => onChange(e)}
+          required
+        />
+        <br />
+        <br />
+        <Button type='submit' variant='contained' color='primary'>
+          Sign Up
+        </Button>
       </form>
-      <p className='my-1'>
+      <p>
         Already have an account? <Link to='/signin'>Sign In</Link>
       </p>
     </Fragment>
