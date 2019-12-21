@@ -7,7 +7,8 @@ import {
   AUTH_ERROR,
   SIGNIN_SUCC,
   SIGNIN_FAIL,
-  SIGNOUT
+  SIGNOUT,
+  CLEAR_PROF
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -74,7 +75,6 @@ export const signin = (email, password) => async dispatch => {
     });
     dispatch(loadUser());
   } catch (err) {
-    console.log("sanity check");
     const errors = err.response.data.errors;
     if (errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, "warning")));
@@ -87,5 +87,6 @@ export const signin = (email, password) => async dispatch => {
 
 //Signout just clears
 export const signout = () => dispatch => {
+  dispatch({ type: CLEAR_PROF });
   dispatch({ type: SIGNOUT });
 };

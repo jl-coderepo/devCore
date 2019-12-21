@@ -9,6 +9,9 @@ import Alert from "./components/layout/Alert";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 import NavBar from "./components/layout/NavBar";
+import Dashboard from "./components/dashboard/Dashboard";
+import PrivateRoute from "./components/routing/PrivateRoute";
+import CreateProfile from "./components/profile/CreateProfile";
 
 //Not sure if it's best to handle here instead of index.js
 if (localStorage.length > 0 && typeof localStorage.token !== "undefined") {
@@ -31,6 +34,12 @@ const App = () => {
           <Switch>
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/signin' component={Signin} />
+            <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            <PrivateRoute
+              exact
+              path='/createprofile'
+              component={CreateProfile}
+            />
           </Switch>
         </Fragment>
       </Router>

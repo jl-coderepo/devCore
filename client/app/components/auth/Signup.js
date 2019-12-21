@@ -32,7 +32,7 @@ const Signup = ({ setAlert, signup, isAuth }) => {
 
   //Redirect after user validation
   if (typeof isAuth !== "undefined" && isAuth) {
-    return <Redirect to='/' />;
+    return <Redirect to='/dashboard' />;
   }
 
   return (

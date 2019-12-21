@@ -62,3 +62,7 @@ h4.logoheader {
   background: rgba(255, 0, 0, 0.75);
   color: #fff;
 }
+.alert-success {
+  background: rgba(0, 255, 0, 0.75);
+  color: #fff;
+}

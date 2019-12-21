@@ -1,8 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Button, ButtonGroup } from "@material-ui/core";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const Landing = () => {
+const Landing = ({ isAuth }) => {
+  if (isAuth) {
+    return <Redirect to='/dashboard' />;
+  }
   return (
     <section className='landing'>
       <div className='landing-content'>
@@ -34,4 +39,12 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+Landing.propTypes = {
+  isAuth: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuth: state.auth.isAuth
+});
+
+export default connect(mapStateToProps)(Landing);

@@ -7,3 +7,6 @@ export const AUTH_ERROR = "AUTH_ERROR";
 export const SIGNIN_SUCC = "SIGNIN_SUCC";
 export const SIGNIN_FAIL = "SIGNIN_FAIL";
 export const SIGNOUT = "SIGNOUT";
+export const GET_PROF = "GET_PROF";
+export const ERR_PROF = "ERR_PROF";
+export const CLEAR_PROF = "CLEAR_PROF";

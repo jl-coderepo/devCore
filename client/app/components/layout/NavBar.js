@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { Redirect } from "react-router-dom";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -79,6 +80,7 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
 
   const handleSignOut = () => {
     signout();
+    handleMenuClose();
     return <Redirect to='/' />;
   };
 
@@ -130,12 +132,16 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
     >
       <MenuItem onClick={handleMenuClose}>
         <Link
-          href='/'
+          href='/dashboard'
           className='react-link'
           color='inherit'
           underline='none'
-          onClick={handleSignOut}
         >
+          Dashboard
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleSignOut}>
+        <Link href='/' className='react-link' color='inherit' underline='none'>
           Sign Out
         </Link>
       </MenuItem>
