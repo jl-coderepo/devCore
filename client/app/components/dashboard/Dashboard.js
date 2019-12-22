@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
 import { CircularProgress, Typography, Link, Button } from "@material-ui/core";
 import DashboardActions from "./DashboardActions";
+import Experience from "./Experience";
+import Education from "./Education";
 
 const Dashboard = ({
   getCurrentProfile,
@@ -27,6 +29,11 @@ const Dashboard = ({
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
+          <br />
+          <br />
+          <Experience experience={profile.experience} />
+          <br />
+          <Education education={profile.education} />
         </Fragment>
       ) : (
         <Fragment>
