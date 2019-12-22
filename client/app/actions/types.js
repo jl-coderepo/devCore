@@ -11,3 +11,5 @@ export const GET_PROF = "GET_PROF";
 export const ERR_PROF = "ERR_PROF";
 export const CLEAR_PROF = "CLEAR_PROF";
 export const UPDATE_PROF = "UPDATE_PROF";
+export const REM_ACCT = "REM_ACCT";
+export const TOGGLE_THEME = "TOGGLE_THEME";

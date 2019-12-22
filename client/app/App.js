@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Landing from "./components/layout/Landing";
 import Signin from "./components/auth/Signin";
 import Signup from "./components/auth/Signup";
-import { Provider } from "react-redux";
+// import { Provider } from "react-redux";
 import store from "./store";
 import Alert from "./components/layout/Alert";
 import { loadUser } from "./actions/auth";
@@ -15,22 +15,35 @@ import CreateProfile from "./components/profile/CreateProfile";
 import EditProfile from "./components/profile/EditProfile";
 import AddExperience from "./components/profile/AddExperience";
 import AddEducation from "./components/profile/AddEducation";
+import {
+  ThemeProvider,
+  CssBaseline,
+  makeStyles,
+  createMuiTheme,
+  darkBaseTheme
+} from "@material-ui/core";
+import { darkTheme, lightTheme } from "./themes/themes";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 //Not sure if it's best to handle here instead of index.js
 if (localStorage.length > 0 && typeof localStorage.token !== "undefined") {
   setAuthToken(localStorage.token);
 }
 
-const App = () => {
+const App = ({ light }) => {
   //componentdidmount hook
+
   useEffect(() => {
+    console.log("is my suspicion correct?");
     store.dispatch(loadUser());
   }, []);
 
   return (
-    <Provider store={store}>
-      <Router>
-        <Fragment>
+    <Router>
+      <Fragment>
+        <ThemeProvider theme={light ? lightTheme : darkTheme}>
+          <CssBaseline />
           <NavBar />
           <Route exact path='/' component={Landing} />
           <Alert />
@@ -51,10 +64,18 @@ const App = () => {
             />
             <PrivateRoute exact path='/addeducation' component={AddEducation} />
           </Switch>
-        </Fragment>
-      </Router>
-    </Provider>
+        </ThemeProvider>
+      </Fragment>
+    </Router>
   );
 };
 
-export default App;
+App.propTypes = {
+  light: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => ({
+  light: state.themes.light
+});
+
+export default connect(mapStateToProps)(App);

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -10,10 +10,12 @@ import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuIcon from "@material-ui/icons/Menu";
 import PeopleIcon from "@material-ui/icons/People";
-import { Link, Tooltip } from "@material-ui/core/";
+import { Tooltip } from "@material-ui/core/";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { signout } from "../../actions/auth";
+import { toggleTheme } from "../../actions/themes";
+import { Switch, Grid } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -53,7 +55,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function NavBar({ auth: { isAuth, loading }, signout }) {
+function NavBar({ auth: { isAuth, loading }, light, signout, toggleTheme }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -78,7 +80,8 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const handleSignOut = () => {
+  const handleSignOut = e => {
+    e.preventDefault();
     signout();
     handleMenuClose();
     return <Redirect to='/' />;
@@ -97,7 +100,7 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
     >
       <MenuItem onClick={handleMenuClose}>
         <Link
-          href='/signup'
+          to='/signup'
           className='react-link'
           color='inherit'
           underline='none'
@@ -107,7 +110,7 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <Link
-          href='/signin'
+          to='/signin'
           className='react-link'
           color='inherit'
           underline='none'
@@ -132,7 +135,7 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
     >
       <MenuItem onClick={handleMenuClose}>
         <Link
-          href='/dashboard'
+          to='/dashboard'
           className='react-link'
           color='inherit'
           underline='none'
@@ -140,8 +143,12 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
           Dashboard
         </Link>
       </MenuItem>
-      <MenuItem onClick={handleSignOut}>
-        <Link href='/' className='react-link' color='inherit' underline='none'>
+      <MenuItem
+        onClick={e => {
+          handleSignOut(e);
+        }}
+      >
+        <Link to='/' className='react-link' color='inherit' underline='none'>
           Sign Out
         </Link>
       </MenuItem>
@@ -163,7 +170,7 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
         <IconButton aria-label='get profile of developers' color='inherit'>
           <PeopleIcon />
         </IconButton>
-        <Link href='/' className='react-link' color='inherit' underline='none'>
+        <Link to='/' className='react-link' color='inherit' underline='none'>
           Developers
         </Link>
       </MenuItem>
@@ -178,6 +185,16 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
         </IconButton>
         <p>User</p>
       </MenuItem>
+      <MenuItem>
+        <Switch
+          checked={light}
+          onChange={toggleTheme}
+          color='default'
+          size='small'
+          style={{ paddingTop: "3px" }}
+        />
+        <p>{light ? "Dark" : "Light"}</p>
+      </MenuItem>
     </Menu>
   );
 
@@ -187,7 +204,7 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
         <Toolbar>
           <Typography className={classes.title} variant='h6' noWrap>
             <Link
-              href='/'
+              to='/'
               className='react-link'
               color='inherit'
               underline='none'
@@ -199,7 +216,7 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
           <div className={classes.sectionDesktop}>
             <Tooltip title='Developers'>
               <Link
-                href='/'
+                to='/'
                 className='react-link'
                 color='inherit'
                 underline='none'
@@ -223,6 +240,17 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
               >
                 <AccountCircle />
               </IconButton>
+            </Tooltip>
+            <Tooltip title='Toggle between light and dark mode'>
+              <Grid container justify='center' direction='column'>
+                <Switch
+                  checked={light}
+                  onChange={toggleTheme}
+                  color='default'
+                  size='small'
+                  style={{ paddingTop: "3px" }}
+                />
+              </Grid>
             </Tooltip>
           </div>
           <div className={classes.sectionMobile}>
@@ -248,11 +276,14 @@ function NavBar({ auth: { isAuth, loading }, signout }) {
 
 NavBar.propTypes = {
   signout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  toggleTheme: PropTypes.func.isRequired,
+  light: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  light: state.themes.light
 });
 
-export default connect(mapStateToProps, { signout })(NavBar);
+export default connect(mapStateToProps, { signout, toggleTheme })(NavBar);

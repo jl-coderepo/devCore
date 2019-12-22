@@ -1,6 +1,6 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import { GET_PROF, ERR_PROF, UPDATE_PROF } from "./types";
+import { GET_PROF, ERR_PROF, UPDATE_PROF, CLEAR_PROF, REM_ACCT } from "./types";
 
 // Get user profile, refer ... routes/api/profile.js line 19
 export const getCurrentProfile = () => async dispatch => {
@@ -137,6 +137,27 @@ export const deleteEducation = id => async dispatch => {
     });
 
     dispatch(setAlert("Education Removed", "success"));
+  } catch (err) {
+    dispatch({
+      type: ERR_PROF,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//Delete profile and account, handle confirmation wherever this is invoked
+export const deleteAccount = () => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/profile/`);
+
+    dispatch({
+      type: CLEAR_PROF
+    });
+    dispatch({
+      type: REM_ACCT
+    });
+
+    dispatch(setAlert("Your account has been removed", "info"));
   } catch (err) {
     dispatch({
       type: ERR_PROF,

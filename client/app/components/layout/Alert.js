@@ -94,7 +94,7 @@ const Alert = ({ alerts }) =>
           if (reason === "clickaway") {
             return;
           }
-
+          //this is problematice, fix later
           setOpen(false);
         }}
       >

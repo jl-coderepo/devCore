@@ -1,11 +1,10 @@
 import React, { Fragment, useState } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   CircularProgress,
   Typography,
-  Link,
   Button,
   Select,
   FormControl,
@@ -225,8 +224,15 @@ const CreateProfile = ({ createProfile, history }) => {
         <Button type='submit' variant='contained' color='primary'>
           Submit
         </Button>
-        <Button href='/dashboard' variant='outlined' color='primary'>
-          Go Back
+        <Button variant='outlined' color='primary'>
+          <Link
+            to='/dashboard'
+            className='react-link'
+            color='inherit'
+            underline='none'
+          >
+            Go Back
+          </Link>
         </Button>
       </form>
     </Fragment>

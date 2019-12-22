@@ -1,4 +1,10 @@
-import { GET_PROF, ERR_PROF, CLEAR_PROF, UPDATE_PROF } from "../actions/types";
+import {
+  GET_PROF,
+  ERR_PROF,
+  CLEAR_PROF,
+  UPDATE_PROF,
+  REM_ACCT
+} from "../actions/types";
 
 const initialState = {
   profile: null,

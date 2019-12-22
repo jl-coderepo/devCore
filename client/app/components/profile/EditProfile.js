@@ -1,10 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   Typography,
-  Link,
   Button,
   Select,
   FormControl,
@@ -247,8 +246,15 @@ const EditProfile = ({
         <Button type='submit' variant='contained' color='primary'>
           Save
         </Button>
-        <Button href='/dashboard' variant='outlined' color='primary'>
-          Go Back
+        <Button variant='outlined' color='primary'>
+          <Link
+            to='/dashboard'
+            className='react-link'
+            color='inherit'
+            underline='none'
+          >
+            Go Back
+          </Link>
         </Button>
       </form>
     </Fragment>
