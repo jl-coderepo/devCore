@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
 import { CircularProgress, Typography, Link, Button } from "@material-ui/core";
+import DashboardActions from "./DashboardActions";
 
 const Dashboard = ({
   getCurrentProfile,
@@ -24,7 +25,9 @@ const Dashboard = ({
         Welcome {user && user.name}
       </Typography>
       {profile !== null ? (
-        <Fragment>THIS USER HAS A PROFILE</Fragment>
+        <Fragment>
+          <DashboardActions />
+        </Fragment>
       ) : (
         <Fragment>
           <Typography color='inherit' variant='body1'>

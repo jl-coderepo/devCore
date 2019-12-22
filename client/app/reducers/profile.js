@@ -1,4 +1,4 @@
-import { GET_PROF, ERR_PROF, CLEAR_PROF } from "../actions/types";
+import { GET_PROF, ERR_PROF, CLEAR_PROF, UPDATE_PROF } from "../actions/types";
 
 const initialState = {
   profile: null,
@@ -13,6 +13,7 @@ export default function(state = initialState, action) {
 
   switch (type) {
     case GET_PROF:
+    case UPDATE_PROF:
       return {
         ...state,
         profile: payload,

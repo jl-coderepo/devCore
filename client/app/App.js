@@ -12,6 +12,9 @@ import NavBar from "./components/layout/NavBar";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import CreateProfile from "./components/profile/CreateProfile";
+import EditProfile from "./components/profile/EditProfile";
+import AddExperience from "./components/profile/AddExperience";
+import AddEducation from "./components/profile/AddEducation";
 
 //Not sure if it's best to handle here instead of index.js
 if (localStorage.length > 0 && typeof localStorage.token !== "undefined") {
@@ -40,6 +43,13 @@ const App = () => {
               path='/createprofile'
               component={CreateProfile}
             />
+            <PrivateRoute exact path='/editprofile' component={EditProfile} />
+            <PrivateRoute
+              exact
+              path='/addexperience'
+              component={AddExperience}
+            />
+            <PrivateRoute exact path='/addeducation' component={AddEducation} />
           </Switch>
         </Fragment>
       </Router>
