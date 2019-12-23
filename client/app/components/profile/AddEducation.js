@@ -165,7 +165,7 @@ const AddEducation = ({ addEducation, history }) => {
         <Button type='submit' variant='contained' color='primary'>
           Submit
         </Button>
-        <Button href='/dashboard' variant='outlined' color='primary'>
+        <Button variant='outlined' color='primary'>
           <Link
             to='/dashboard'
             className='react-link'

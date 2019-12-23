@@ -61,7 +61,8 @@ const Education = ({ education, deleteEducation }) => {
             {exp.school}
           </Typography>
           <Typography className={classes.secondaryHeading}>
-            {moment.utc(exp.from).format("MMMM DD, YYYY")}-{" "}
+            {moment.utc(exp.from).format("MMMM DD, YYYY")}
+            {" - "}
             {exp.to === null
               ? " Present"
               : moment.utc(exp.to).format("MMMM DD, YYYY")}

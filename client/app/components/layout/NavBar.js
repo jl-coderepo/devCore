@@ -170,7 +170,12 @@ function NavBar({ auth: { isAuth, loading }, light, signout, toggleTheme }) {
         <IconButton aria-label='get profile of developers' color='inherit'>
           <PeopleIcon />
         </IconButton>
-        <Link to='/' className='react-link' color='inherit' underline='none'>
+        <Link
+          to='/profiles'
+          className='react-link'
+          color='inherit'
+          underline='none'
+        >
           Developers
         </Link>
       </MenuItem>
@@ -216,7 +221,7 @@ function NavBar({ auth: { isAuth, loading }, light, signout, toggleTheme }) {
           <div className={classes.sectionDesktop}>
             <Tooltip title='Developers'>
               <Link
-                to='/'
+                to='/profiles'
                 className='react-link'
                 color='inherit'
                 underline='none'

@@ -25,6 +25,7 @@ import {
 import { darkTheme, lightTheme } from "./themes/themes";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import Profiles from "./components/profile/Profiles";
 
 //Not sure if it's best to handle here instead of index.js
 if (localStorage.length > 0 && typeof localStorage.token !== "undefined") {
@@ -50,6 +51,7 @@ const App = ({ light }) => {
           <Switch>
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/signin' component={Signin} />
+            <Route exact path='/profiles' component={Profiles} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
             <PrivateRoute
               exact

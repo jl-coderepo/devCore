@@ -3,7 +3,8 @@ import {
   ERR_PROF,
   CLEAR_PROF,
   UPDATE_PROF,
-  REM_ACCT
+  GET_PROFS,
+  GET_REPOS
 } from "../actions/types";
 
 const initialState = {
@@ -23,6 +24,18 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profile: payload,
+        loading: false
+      };
+    case GET_PROFS:
+      return {
+        ...state,
+        profiles: payload,
+        loading: false
+      };
+    case GET_REPOS:
+      return {
+        ...state,
+        repos: payload,
         loading: false
       };
     case ERR_PROF:

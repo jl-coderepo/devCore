@@ -13,3 +13,5 @@ export const CLEAR_PROF = "CLEAR_PROF";
 export const UPDATE_PROF = "UPDATE_PROF";
 export const REM_ACCT = "REM_ACCT";
 export const TOGGLE_THEME = "TOGGLE_THEME";
+export const GET_PROFS = "GET_PROFS";
+export const GET_REPOS = "GET_REPOS";
