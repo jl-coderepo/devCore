@@ -378,9 +378,9 @@ router.get("/github/:username", async (req, res) => {
     // Only grabbing 5 for alpha phase
     const githubURI = `https://api.github.com/users/${
       req.params.username
-    }/repos?per_page=5&sort=created:asc&client_id=${config.get(
-      "githubClientId"
-    )}&client_secret=${config.get("githubSecret")}`;
+    }/repos?per_page=5&sort=created:asc&client_id=${process.env
+      .GITHUBCLIENTID || config.get("githubClientId")}&client_secret=${process
+      .env.GITHUBSECRET || config.get("githubSecret")}`;
     const githubRes = await axios.get(githubURI);
     res.json(githubRes.data);
   } catch (err) {
