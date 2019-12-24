@@ -1,7 +1,7 @@
 {
-  "mongoURI": "process.env.MONGOURI",
-  "jwtSecret": "process.env.JWTSECRET",
-  "githubClientId": "process.env.GITHUBCLIENTID",
-  "githubSecret": "process.env.GITHUBSECRET",
-  "testing_con_var": "process.env.TESTING_CON_VAR"
+  "mongoURI": process.env.MONGOURI,
+  "jwtSecret": process.env.JWTSECRET,
+  "githubClientId": process.env.GITHUBCLIENTID,
+  "githubSecret": process.env.GITHUBSECRET,
+  "testing_con_var": process.env.TESTING_CON_VAR
 }
