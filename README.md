@@ -1,7 +1,5 @@
 # Dev Core
 
-===
-
 Where developers come together to collaborate.
 
 #### Motivation
@@ -10,13 +8,11 @@ To create an accessible, responsive spa where developers can find each other to 
 
 ## Client
 
----
+#### Overview
 
-_Coming soon_
+Primarily leverages React and Material-ui to make a responsive and quick application for the user to interact with. Currently a developer can sign up and create a profile and all developers who has signed up has their profile displayed publicly.
 
 ## Server
-
----
 
 #### Overview
 
@@ -56,8 +52,6 @@ You will need Node.js to run and need npm (or another package manager) to instal
 
 ## Database
 
----
-
 #### Overview
 
 In the current iteration uses MongoDB with two models which are 'User' and 'Profile'.
@@ -72,12 +66,8 @@ Personally used MongoDB Atlas for my database, but whoever is using this can set
 
 ## Built With and Technologies Used
 
----
-
-Node.js, Express, Axios, MongoDB, bcrypt, mongoose, config, jsonwebtoken, Postman
+Node.js, Express, Axios, MongoDB, bcrypt, mongoose, config, jsonwebtoken, Postman, React, Material-ui
 
 ## Aside
 
----
-
-With barebones back-end finished moving onto front-end that is primarily going to use React.
+Minimum viability established, need to improve on styling and need to run adequate tests.
