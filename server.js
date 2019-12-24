@@ -23,7 +23,7 @@ app.use("/api/profile", require("./routes/api/profile"));
 //Serving static assets in production
 if (process.env.NODE_ENV === "production") {
   console.log(" __SANITY CHECK: 1");
-  app.use(express.static("/dist"));
+  app.use(express.static("dist"));
   console.log(" __SANITY CHECK: 2");
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "dist", "index.html"));
@@ -31,15 +31,15 @@ if (process.env.NODE_ENV === "production") {
   console.log(" __SANITY CHECK: 3");
 }
 // //remove later
-// else {
-//   console.log(" __SANITY CHECK: 1");
-//   app.use(express.static(path.join(__dirname, "../client/dist")));
-//   console.log(" __SANITY CHECK: 2");
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
-//   });
-//   console.log(" __SANITY CHECK: 3");
-// }
+else {
+  console.log(" __SANITY CHECK: 1");
+  app.use(express.static("dist"));
+  console.log(" __SANITY CHECK: 2");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "dist", "index.html"));
+  });
+  console.log(" __SANITY CHECK: 3");
+}
 
 // When using heroku (or another host) PORT will check
 // 'process.env.PORT' to find suitable port, local development
