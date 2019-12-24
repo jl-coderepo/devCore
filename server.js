@@ -6,7 +6,7 @@ const path = require("path");
 const app = express();
 
 //sanity test
-// connectDB();
+connectDB();
 
 // Initializing middleware(s)
 app.use(express.json({ extended: true }));
