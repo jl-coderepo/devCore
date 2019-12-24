@@ -5,7 +5,8 @@ const path = require("path");
 
 const app = express();
 
-connectDB();
+//sanity test
+// connectDB();
 
 // Initializing middleware(s)
 app.use(express.json({ extended: true }));
@@ -32,13 +33,13 @@ if (process.env.NODE_ENV === "production") {
 }
 // //remove later
 else {
-  console.log(" __SANITY CHECK: 1");
+  console.log(" __SANITY CHECK: 4");
   app.use(express.static("dist"));
-  console.log(" __SANITY CHECK: 2");
+  console.log(" __SANITY CHECK: 5");
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "dist", "index.html"));
   });
-  console.log(" __SANITY CHECK: 3");
+  console.log(" __SANITY CHECK: 6");
 }
 
 // When using heroku (or another host) PORT will check
