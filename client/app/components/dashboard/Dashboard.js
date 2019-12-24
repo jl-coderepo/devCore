@@ -117,7 +117,6 @@ const Dashboard = ({
               >
                 <Grid item>
                   <Button
-                    href='/editprofile'
                     variant='contained'
                     color='primary'
                     size='small'
@@ -131,7 +130,6 @@ const Dashboard = ({
                 </Grid>
                 <Grid item>
                   <Button
-                    href='/addeducation'
                     variant='contained'
                     color='primary'
                     size='small'

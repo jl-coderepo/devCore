@@ -13,6 +13,16 @@ const DashboardActions = () => {
       >
         <Button variant='contained' color='primary' size='small'>
           <Link
+            to='/profile/me'
+            className='react-link'
+            color='inherit'
+            underline='none'
+          >
+            My Profile
+          </Link>
+        </Button>
+        <Button variant='contained' color='primary' size='small'>
+          <Link
             to='/editprofile'
             className='react-link'
             color='inherit'
