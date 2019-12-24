@@ -23,10 +23,10 @@ app.use("/api/profile", require("./routes/api/profile"));
 //Serving static assets in production
 if (process.env.NODE_ENV === "production") {
   console.log(" __SANITY CHECK: 1");
-  app.use(express.static(path.join(__dirname, "../client/dist")));
+  app.use(express.static("/dist"));
   console.log(" __SANITY CHECK: 2");
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+    res.sendFile(path.resolve(__dirname, "dist", "index.html"));
   });
   console.log(" __SANITY CHECK: 3");
 }
