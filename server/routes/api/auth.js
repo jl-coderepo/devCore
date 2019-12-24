@@ -71,7 +71,7 @@ router.post(
       };
       jwt.sign(
         payload,
-        config.get("jwtSecret"),
+        process.env.JWTSECRET || config.get("jwtSecret"),
         { expiresIn: 604800 }, // Jwt expires in one week, no refresh implemented
         (err, token) => {
           if (err) throw err;
