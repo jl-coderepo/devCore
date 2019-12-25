@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Experience = ({ experience, deleteExperience }) => {
+const Experience = ({ auth, profile, experience, deleteExperience }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -81,18 +81,20 @@ const Experience = ({ experience, deleteExperience }) => {
                 {exp.description}
               </Typography>
             </Grid>
-            <Grid item xs={2} md={1}>
-              <Tooltip title='To delete this experience' placement='right'>
-                <Fab
-                  color='secondary'
-                  aria-label='delete'
-                  size='small'
-                  onClick={() => deleteExperience(exp._id)}
-                >
-                  <DeleteIcon />
-                </Fab>
-              </Tooltip>
-            </Grid>
+            {auth.user && auth.user._id === profile.profile.user._id && (
+              <Grid item xs={2} md={1}>
+                <Tooltip title='To delete this education' placement='right'>
+                  <Fab
+                    color='secondary'
+                    aria-label='delete'
+                    size='small'
+                    onClick={() => deleteExperience(exp._id)}
+                  >
+                    <DeleteIcon />
+                  </Fab>
+                </Tooltip>
+              </Grid>
+            )}
           </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -111,7 +113,14 @@ const Experience = ({ experience, deleteExperience }) => {
 
 Experience.propTypes = {
   experience: PropTypes.array.isRequired,
-  deleteExperience: PropTypes.func.isRequired
+  deleteExperience: PropTypes.func.isRequired,
+  user: PropTypes.object,
+  profile: PropTypes.object
 };
 
-export default connect(null, { deleteExperience })(Experience);
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profile: state.profile
+});
+
+export default connect(mapStateToProps, { deleteExperience })(Experience);

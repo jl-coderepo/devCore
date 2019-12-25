@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Education = ({ education, deleteEducation }) => {
+const Education = ({ auth, profile, education, deleteEducation }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -81,18 +81,20 @@ const Education = ({ education, deleteEducation }) => {
                 {exp.description}
               </Typography>
             </Grid>
-            <Grid item xs={2} md={1}>
-              <Tooltip title='To delete this education' placement='right'>
-                <Fab
-                  color='secondary'
-                  aria-label='delete'
-                  size='small'
-                  onClick={() => deleteEducation(exp._id)}
-                >
-                  <DeleteIcon />
-                </Fab>
-              </Tooltip>
-            </Grid>
+            {auth.user && auth.user._id === profile.profile.user._id && (
+              <Grid item xs={2} md={1}>
+                <Tooltip title='To delete this education' placement='right'>
+                  <Fab
+                    color='secondary'
+                    aria-label='delete'
+                    size='small'
+                    onClick={() => deleteEducation(exp._id)}
+                  >
+                    <DeleteIcon />
+                  </Fab>
+                </Tooltip>
+              </Grid>
+            )}
           </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -111,7 +113,14 @@ const Education = ({ education, deleteEducation }) => {
 
 Education.propTypes = {
   education: PropTypes.array.isRequired,
-  deleteEducation: PropTypes.func.isRequired
+  deleteEducation: PropTypes.func.isRequired,
+  user: PropTypes.object,
+  profile: PropTypes.object
 };
 
-export default connect(null, { deleteEducation })(Education);
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profile: state.profile
+});
+
+export default connect(mapStateToProps, { deleteEducation })(Education);

@@ -83,10 +83,11 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
                   <CardActions>
                     <Grid container justify='flex-end'>
                       <Link
-                        to={`https://github.com/${repo.full_name}`}
+                        href={`https://github.com/${repo.full_name}`}
                         className='react-link'
                         color='inherit'
                         underline='none'
+                        target='_blank'
                       >
                         <Typography
                           className={classes.pos}
